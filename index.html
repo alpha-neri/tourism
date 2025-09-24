@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Badi | Your Adventure Buddy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- "Page Flip" Preloader with Logo -->
+    <div id="preloader">
+        <div class="preloader-icon">
+            <img src="images/logo.png" alt="Travel Badi Logo">
+        </div>
+        <div class="preloader-panel top-left-panel"></div>
+        <div class="preloader-panel bottom-right-panel"></div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                <img src="images/logo.png" alt="Travel Badi Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#tours">Tours</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- NEW Hero Section with Animated Video Box -->
+        <section id="hero">
+            <div class="container">
+                <div class="hero-layout">
+                    <!-- Left Side: Text Content -->
+                    <div class="hero-text">
+                        <h1>
+                            <span class="fade-in">Travel Badi</span>
+                            <span class="fade-in">Agency</span>
+                        </h1>
+                        <p class="slogan-animated">Where Every Journey Feels Like Traveling with a Buddy.</p>
+                        <a href="#tours" class="cta-button fade-in">Explore Tours</a>
+                    </div>
+                    <!-- Right Side: Promotional Video with Decorative Frame -->
+                    <div class="hero-video-container">
+                        <div class="hero-bg-shapes"></div>
+                        <div class="hero-video-frame"></div>
+                        <div class="hero-video">
+                            <video id="hero-video-element" autoplay muted loop playsinline poster="images/picture8.jpg">
+                                <source src="images/promotionalvideo.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <button id="sound-toggle-btn" class="sound-btn">
+                                <i class="fas fa-volume-mute"></i>
+                                <i class="fas fa-volume-high" style="display: none;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="content-section">
+            <div class="container reveal">
+                <h2 class="section-title">Your Trusted Travel Buddies</h2>
+                <div class="about-content">
+                    <img src="images/picture5.jpg" alt="Travel Badi Team" class="about-image">
+                    <div class="about-text">
+                        <h3>Passionate. Experienced. Unforgettable.</h3>
+                        <p>At Travel Badi, we're more than just guides; we're your companions on the road. Founded on the idea that travel is best shared, we are dedicated to creating personal, memorable, and joyful experiences. We handle the details so you can focus on making memories.</p>
+                        <p>Join us to explore the world not just as a tourist, but as part of the Travel Badi family.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tour Packages Section -->
+        <section id="tours" class="content-section">
+            <div class="container reveal">
+                <h2 class="section-title">Our Curated Packages</h2>
+                <div class="tour-cards">
+                    <div class="tour-card">
+                        <img src="images/picture2.jpg" alt="Island Hopping">
+                        <div class="card-content">
+                            <h3>Cebu Island Paradise</h3>
+                            <p>Discover the pristine beaches and vibrant marine life of the Philippines.</p>
+                            <span class="price">Contact for Price</span>
+                            <a href="#contact" class="btn-card">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="tour-card">
+                        <img src="images/picture1.jpg" alt="Mountain Adventure">
+                        <div class="card-content">
+                            <h3>Bohol Countryside Charm</h3>
+                            <p>Explore the iconic Chocolate Hills, tarsiers, and the serene Loboc River.</p>
+                            <span class="price">Contact for Price</span>
+                            <a href="#contact" class="btn-card">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="tour-card">
+                        <img src="images/picture4.jpg" alt="Historical Tour">
+                        <div class="card-content">
+                            <h3>Cebu City Heritage Tour</h3>
+                            <p>A journey through the rich history and culture of the Queen City of the South.</p>
+                            <span class="price">Contact for Price</span>
+                            <a href="#contact" class="btn-card">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Gallery Section -->
+        <section id="gallery" class="content-section">
+            <div class="container reveal">
+                <h2 class="section-title">Moments From Our Adventures</h2>
+                
+                <div id="gallery-container" class="gallery-container">
+                    <div class="gallery-stack">
+                        <div class="gallery-item">
+                            <img src="images/picture1.jpg" alt="Gallery Image 1" data-description="An unforgettable sunset view from the summit after a rewarding day of trekking through the mountains.">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/picture2.jpg" alt="Gallery Image 2" data-description="Exploring hidden sea caves and serene blue waters on our coastal kayaking adventure.">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/picture3.jpg" alt="Gallery Image 3" data-description="Immersing ourselves in the vibrant culture and flavors of a bustling local market.">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/picture4.jpg" alt="Gallery Image 4" data-description="Walking through history and discovering the stories etched into the stones of ancient ruins.">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/picture5.jpg" alt="Gallery Image 5" data-description="Making new friends and sharing laughs. These are the moments that make travel special.">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/picture6.jpg" alt="Gallery Image 6" data-description="A lucky encounter with local wildlife in its natural, pristine habitat.">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/picture7.jpg" alt="Gallery Image 7" data-description="The magic of the city coming alive as the sun goes down and the lights begin to sparkle.">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="images/picture8.jpg" alt="Gallery Image 8" data-description="The refreshing spray and thunderous sound of a majestic waterfall hidden deep in the jungle.">
+                        </div>
+                    </div>
+                    <button id="expand-gallery-btn" class="cta-button">Explore Gallery</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="content-section">
+            <div class="container reveal">
+                <h2 class="section-title">What Our Buddies Say</h2>
+                <div class="testimonial-slider">
+                    <div class="testimonial-slides">
+                        <div class="testimonial-slide active">
+                            <p>"An absolutely life-changing experience! Travel Badi made every moment special. I can't wait to book my next trip!"</p>
+                            <cite>- Alex Johnson</cite>
+                        </div>
+                        <div class="testimonial-slide">
+                            <p>"The best-organized tour I've ever been on. From the accommodations to the local food, everything was seamless. Highly recommended!"</p>
+                            <cite>- Maria Garcia</cite>
+                        </div>
+                        <div class="testimonial-slide">
+                            <p>"I saw places I never would have found on my own. The passion the Travel Badi team has is infectious. Thank you!"</p>
+                            <cite>- David Chen</cite>
+                        </div>
+                    </div>
+                    <button class="slider-btn prev">&lt;</button>
+                    <button class="slider-btn next">&gt;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="content-section">
+            <div class="container reveal">
+                <h2 class="section-title">Start Your Journey Here</h2>
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <p>Have questions or ready to book your next adventure? Reach out to us!</p>
+                        <ul>
+                            <li><i class="fas fa-phone"></i> +63 912 345 6789</li>
+                            <li><i class="fas fa-phone-alt"></i> +123-456-7890</li>
+                            <li><i class="fas fa-envelope"></i> travelbadiagency@gmail.com</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Leon Kilat St., Cebu City, Philippines</li>
+                        </ul>
+                    </div>
+                    <div class="contact-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.334135515321!2d123.89297591535456!3d10.297439192636477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99955734524c5%3A0x628043685369c676!2sLeon%20Kilat%20St%2C%20Cebu%20City%2C%20Cebu!5e0!3m2!1sen!2sph!4v1672852500000!5m2!1sen!2sph" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Modern Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <img src="images/logo.png" alt="Travel Badi Logo" class="footer-logo">
+                    <p>Your adventure buddy for unforgettable journeys. We create personalized travel experiences that feel like exploring the world with a friend.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#tours">Tour Packages</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Leon Kilat St., Cebu City</li>
+                        <li><i class="fas fa-phone"></i> +63 912 345 6789</li>
+                        <li><i class="fas fa-envelope"></i> travelbadiagency@gmail.com</li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Travel Badi Agency. All Rights Reserved. Designed with ❤️.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Image Modal Structure -->
+    <div id="image-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img src="" alt="Enlarged gallery image" id="modal-image">
+            <p id="modal-description"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
