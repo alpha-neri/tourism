@@ -41,7 +41,11 @@ header.scrolled .nav-links a:hover { color: var(--primary-color); }
 .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 2px; background-color: var(--accent-color); transition: width 0.4s ease; }
 .nav-links a:hover::after { width: 100%; }
 
-/* --- NEW Hero Section with Video --- */
+/* Hamburger Menu Button */
+.menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; z-index: 1100; }
+header.scrolled .menu-toggle { color: var(--text-color); }
+
+/* --- Hero Section with Video --- */
 #hero {
     min-height: 100vh;
     background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/background.jpg') no-repeat center center/cover;
@@ -62,8 +66,8 @@ header.scrolled .nav-links a:hover { color: var(--primary-color); }
 .hero-video-container { position: relative; }
 .hero-bg-shapes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 .hero-bg-shapes::before, .hero-bg-shapes::after { content: ''; position: absolute; border-radius: var(--border-radius); opacity: 0; animation: fade-in-shapes 1s ease-out 0.5s forwards; }
-.hero-bg-shapes::before { width: 100%; height: 100%; background-color: rgba(155, 152, 209, 0.2); /* --secondary-color with alpha */ transform: translate(40px, 40px); }
-.hero-bg-shapes::after { width: 80%; height: 80%; background-color: rgba(216, 27, 96, 0.15); /* --accent-color with alpha */ top: -20px; left: -20px; }
+.hero-bg-shapes::before { width: 100%; height: 100%; background-color: rgba(155, 152, 209, 0.2); transform: translate(40px, 40px); }
+.hero-bg-shapes::after { width: 80%; height: 80%; background-color: rgba(216, 27, 96, 0.15); top: -20px; left: -20px; }
 @keyframes fade-in-shapes { to { opacity: 1; } }
 
 .hero-video-frame { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--primary-color); border-radius: var(--border-radius); transform: translate(20px, 20px); z-index: 2; opacity: 0; animation: draw-frame 1s ease-out 0.8s forwards; }
@@ -95,11 +99,13 @@ a.cta-button.fade-in { animation-delay: 6.0s; }
 .cta-button { display: inline-block; background-color: var(--primary-color); color: var(--light-text-color); padding: 14px 30px; margin-top: 40px; border-radius: 50px; text-decoration: none; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: all 0.3s ease; }
 .cta-button:hover { background-color: var(--accent-color); transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
 
-/* --- General Content Section Styles --- */
+/* General Content Section Styles */
 .content-section { padding: 80px 0; }
 .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: var(--primary-color); position: relative; padding-bottom: 10px; }
 .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background-color: var(--accent-color); transition: width 0.5s ease-in-out; }
 .reveal.visible .section-title::after { width: 120px; }
+
+/* Other sections remain the same... */
 
 /* --- About Us Section --- */
 .about-content { display: flex; align-items: center; gap: 40px; }
@@ -187,22 +193,98 @@ a.cta-button.fade-in { animation-delay: 6.0s; }
 .reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+
+/* --- ================================== --- */
 /* --- Responsive Design --- */
+/* --- ================================== --- */
+
+/* --- Tablet and Smaller Laptops (max-width: 992px) --- */
 @media (max-width: 992px) {
-    .hero-layout { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-    .hero-text { order: 2; }
+    .hero-layout { grid-template-columns: 1fr; gap: 40px; }
+    .hero-text { 
+        order: 2;
+        /* --- FIX #2: Center the text block for tablets and mobile --- */
+        text-align: center;
+    }
     .hero-text h1 { align-items: center; }
     .hero-video-container { order: 1; max-width: 500px; width: 100%; margin: 0 auto; }
     .gallery-container.expanded .gallery-stack { grid-template-columns: repeat(3, 1fr); }
+    .section-title { font-size: 2.2rem; }
+    .about-content { gap: 30px; }
 }
+
+/* --- Mobile Devices (max-width: 768px) --- */
 @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hero-text h1 span:nth-child(1), .hero-text h1 span:nth-child(2) { font-size: 3rem; }
+    /* --- Hamburger Menu Logic --- */
+    .menu-toggle { display: block; }
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(40, 15, 66, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        z-index: 1050;
+    }
+    .nav-links.active { right: 0; }
+    .nav-links li { margin: 20px 0; }
+    .nav-links a { color: #fff; font-size: 1.5rem; }
+    header.scrolled .nav-links a { color: #fff; }
+    .menu-toggle.active .fa-bars { display: none; }
+    .menu-toggle .fa-times { display: none; }
+    .menu-toggle.active .fa-times { display: block; }
+
+    /* --- General Adjustments --- */
+    .content-section { padding: 60px 0; }
+
+    /* --- Hero Section --- */
+    #hero {
+        padding-top: 100px;
+        min-height: auto;
+        padding-bottom: 60px;
+    }
+    
+    /* --- FIX #1: Reduce the video frame offset to prevent overflow --- */
+    .hero-bg-shapes::before { transform: translate(15px, 15px); }
+    .hero-video-frame { transform: translate(10px, 10px); }
+    .hero-bg-shapes::after { top: -10px; left: -10px; }
+    
+    .hero-text h1 span:nth-child(1), 
+    .hero-text h1 span:nth-child(2) { font-size: 3rem; }
     .hero-text h1 span:nth-child(2) { padding-left: 0; }
     .slogan-animated { font-size: 1rem; }
+    .cta-button { padding: 12px 25px; margin-top: 30px; }
+
+    /* --- About & Contact Layouts --- */
     .about-content, .contact-wrapper { flex-direction: column; }
     .about-image, .about-text, .contact-info, .contact-map { width: 100%; }
     .contact-map { height: 300px; }
+
+    /* --- Gallery --- */
     .gallery-stack { width: 300px; height: 225px; }
     .gallery-item { width: 300px; height: 225px; }
+
+    /* --- Testimonials --- */
+    .testimonial-slider { padding: 30px 20px; }
+    .slider-btn { display: none; }
+
+    /* --- Footer --- */
+    .footer-grid { text-align: center; }
+    .footer-grid > div { margin-bottom: 20px; }
+    .site-footer h3::after { left: 50%; transform: translateX(-50%); }
+    .social-icons { justify-content: center; }
+}
+
+/* --- Small Mobile Devices (max-width: 480px) --- */
+@media (max-width: 480px) {
+    .hero-text h1 span:nth-child(1), 
+    .hero-text h1 span:n-child(2) { font-size: 2.5rem; }
+    .section-title { font-size: 1.8rem; }
+    .tour-cards { grid-template-columns: 1fr; }
+    .contact-wrapper { padding: 25px; }
 }
