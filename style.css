@@ -45,51 +45,43 @@ header.scrolled .nav-links a:hover { color: var(--primary-color); }
 header.scrolled .menu-toggle { color: var(--text-color); }
 .menu-toggle.active { color: #fff; }
 
-/* --- Hero Section with Video --- */
+/* --- Hero Section with Video (New Animations) --- */
 #hero { min-height: 100vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/background.jpg') no-repeat center center/cover; display: flex; align-items: center; color: var(--light-text-color); padding-top: 80px; padding-bottom: 40px; overflow: hidden; }
 .hero-layout { display: grid; grid-template-columns: 0.9fr 1.1fr; align-items: center; gap: 60px; }
 .hero-text { text-align: left; }
 .hero-text h1 { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
-.hero-text h1 span:nth-child(1) { font-size: 4.5rem; font-weight: 800; }
-.hero-text h1 span:nth-child(2) { font-size: 4.5rem; font-weight: 600; padding-left: 2rem; }
-.hero-text p { font-size: 1.2rem; margin-top: 15px; }
-
-/* --- FINAL FIX #1: Use a class-based transition controlled by JavaScript --- */
-.hero-video-container {
-    position: relative;
-    opacity: 0; /* Start hidden */
-    transition: opacity 1s ease-out; /* The fade effect will take 1 second */
-}
-.hero-video-container.visible {
-    opacity: 1; /* When this class is added by JS, the container fades in */
-}
-
+.hero-text h1 span { font-size: 4.5rem; font-weight: 800; }
+.hero-text h1 .h1-line:nth-child(2) span { font-weight: 600; padding-left: 2rem; }
+.hero-slogan { font-size: 1.2rem; margin-top: 20px; line-height: 1.5; }
+.hero-slogan span { display: block; }
+.hero-video-container { position: relative; opacity: 0; transform: scale(0.95); transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
+.hero-video-container.visible { opacity: 1; transform: scale(1); }
+.h1-line { overflow: hidden; }
+.animated-text { display: block; opacity: 0; transform: translateY(110%); animation: slideUpIn 1s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+.animated-button { opacity: 0; transform: translateY(20px); animation: fadeIn 1s ease-out forwards; }
+h1 .h1-line:nth-child(1) .animated-text { animation-delay: 1.8s; }
+h1 .h1-line:nth-child(2) .animated-text { animation-delay: 2.0s; }
+.hero-slogan .animated-text:nth-child(1) { animation-delay: 2.4s; }
+.hero-slogan .animated-text:nth-child(2) { animation-delay: 2.6s; }
+.animated-button { animation-delay: 3.0s; }
+@keyframes slideUpIn { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 .hero-bg-shapes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 .hero-bg-shapes::before, .hero-bg-shapes::after { content: ''; position: absolute; border-radius: var(--border-radius); }
 .hero-bg-shapes::before { width: 100%; height: 100%; background-color: rgba(155, 152, 209, 0.2); transform: translate(40px, 40px); }
 .hero-bg-shapes::after { width: 80%; height: 80%; background-color: rgba(216, 27, 96, 0.15); top: -20px; left: -20px; }
 .hero-video-frame { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--primary-color); border-radius: var(--border-radius); transform: translate(20px, 20px); z-index: 2; }
 .hero-video { position: relative; z-index: 3; }
-
 .hero-video video { width: 100%; border-radius: var(--border-radius); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 .sound-btn { position: absolute; bottom: 20px; right: 20px; z-index: 10; width: 40px; height: 40px; border-radius: 50%; border: none; background-color: rgba(0,0,0,0.5); color: #fff; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 1rem; backdrop-filter: blur(5px); opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease; }
 .hero-video-container:hover .sound-btn { opacity: 1; visibility: visible; }
 .sound-btn:hover { background-color: rgba(0,0,0,0.8); transform: scale(1.1); }
 .sound-btn.unmuted .fa-volume-mute { display: none; }
 .sound-btn.unmuted .fa-volume-high { display: block; }
-.slogan-animated { display: inline-block; vertical-align: top; border-right: 3px solid rgba(255, 255, 255, .75); white-space: nowrap; overflow: hidden; width: 0; opacity: 0; animation: typing 3.5s steps(48, end) 2.5s forwards, blink-caret .75s step-end infinite 2.5s; }
-.slogan-animated.typing-finished { border-right-color: transparent; animation: typing 3.5s steps(48, end) 2.5s forwards; }
-@keyframes typing { from { width: 0; opacity: 1; } to { width: 100%; opacity: 1; } }
-@keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: rgba(255, 255, 255, .75); } }
-.fade-in { opacity: 0; animation: fadeIn 0.8s ease-out forwards; }
-h1 .fade-in:nth-child(1) { animation-delay: 1.8s; } 
-h1 .fade-in:nth-child(2) { animation-delay: 2.0s; } 
-a.cta-button.fade-in { animation-delay: 6.0s; } 
-@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 .cta-button { display: inline-block; background-color: var(--primary-color); color: var(--light-text-color); padding: 14px 30px; margin-top: 40px; border-radius: 50px; text-decoration: none; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: all 0.3s ease; }
 .cta-button:hover { background-color: var(--accent-color); transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
 
-/* ... (All other sections from General Content to Footer are correct and unchanged) ... */
+/* ... (General sections are unchanged) ... */
 .content-section { padding: 80px 0; }
 .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: var(--primary-color); position: relative; padding-bottom: 10px; }
 .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background-color: var(--accent-color); transition: width 0.5s ease-in-out; }
@@ -108,6 +100,8 @@ a.cta-button.fade-in { animation-delay: 6.0s; }
 .card-content .price { display: block; font-weight: 600; color: var(--accent-color); margin: 15px 0; }
 .btn-card { display: inline-block; background-color: #f1f1f1; color: var(--text-color); padding: 8px 18px; border-radius: 50px; text-decoration: none; font-weight: 500; transition: background-color 0.3s ease, color 0.3s ease; }
 .btn-card:hover { background-color: var(--primary-color); color: var(--light-text-color); }
+
+/* --- Gallery Section (Restored to Original Design) --- */
 .gallery-container { position: relative; width: 100%; min-height: 450px; display: flex; justify-content: center; align-items: center; }
 .gallery-stack { position: relative; width: 350px; height: 250px; margin: 0 auto; transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
 .gallery-container.expanded .gallery-stack { width: 100%; }
@@ -120,6 +114,8 @@ a.cta-button.fade-in { animation-delay: 6.0s; }
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
 .gallery-container.expanded .gallery-item:hover { transform: scale(1.05) !important; z-index: 10; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
 #expand-gallery-btn { position: absolute; z-index: 10; bottom: 0; left: 50%; transform: translateX(-50%); }
+
+/* ... (Rest of the CSS is unchanged) ... */
 .modal { position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
 .modal.visible { opacity: 1; visibility: visible; }
 .modal-content { position: relative; background: var(--card-bg); padding: 25px; border-radius: var(--border-radius); max-width: 800px; width: 90%; text-align: center; transform: scale(0.9); transition: transform 0.3s ease; }
@@ -185,21 +181,18 @@ a.cta-button.fade-in { animation-delay: 6.0s; }
     header.scrolled .nav-links a { color: #fff; }
     .content-section { padding: 60px 0; }
     #hero { padding-top: 100px; min-height: auto; padding-bottom: 60px; }
-
-    /* --- FINAL FIX #2: Reset transforms to none, centering the frames perfectly --- */
     .hero-bg-shapes::before,
     .hero-video-frame {
-        transform: none; /* This is the key fix. It removes all offsets. */
+        transform: none;
     }
     .hero-bg-shapes::after {
         transform: none;
-        top: 0; /* Reset positioning for perfect centering */
+        top: 0;
         left: 0;
     }
-    
-    .hero-text h1 span:nth-child(1), .hero-text h1 span:nth-child(2) { font-size: 3rem; }
-    .hero-text h1 span:nth-child(2) { padding-left: 0; }
-    .slogan-animated { font-size: 1rem; }
+    .hero-text h1 span { font-size: 3rem; }
+    .hero-text h1 .h1-line:nth-child(2) span { padding-left: 0; }
+    .hero-slogan { font-size: 1.1rem; }
     .cta-button { padding: 12px 25px; margin-top: 30px; }
     .about-content, .contact-wrapper { flex-direction: column; }
     .about-image, .about-text, .contact-info, .contact-map { width: 100%; }
@@ -215,7 +208,7 @@ a.cta-button.fade-in { animation-delay: 6.0s; }
 }
 
 @media (max-width: 480px) {
-    .hero-text h1 span:nth-child(1), .hero-text h1 span:nth-child(2) { font-size: 2.5rem; }
+    .hero-text h1 span { font-size: 2.5rem; }
     .section-title { font-size: 1.8rem; }
     .tour-cards { grid-template-columns: 1fr; }
     .contact-wrapper { padding: 25px; }
