@@ -13,6 +13,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { font-family: 'Poppins', sans-serif; background-color: var(--background-color); color: var(--text-color); line-height: 1.6; }
+body.nav-open { overflow: hidden; }
 .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
 /* --- "Page Flip" Preloader Styles --- */
@@ -40,51 +41,42 @@ header.scrolled .nav-links a { color: var(--text-color); }
 header.scrolled .nav-links a:hover { color: var(--primary-color); }
 .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 2px; background-color: var(--accent-color); transition: width 0.4s ease; }
 .nav-links a:hover::after { width: 100%; }
-
-/* Hamburger Menu Button */
-.menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; z-index: 1100; }
+.menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; z-index: 1100; transition: color 0.3s ease; }
 header.scrolled .menu-toggle { color: var(--text-color); }
+.menu-toggle.active { color: #fff; }
 
 /* --- Hero Section with Video --- */
-#hero {
-    min-height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/background.jpg') no-repeat center center/cover;
-    display: flex;
-    align-items: center;
-    color: var(--light-text-color);
-    padding-top: 80px;
-    padding-bottom: 40px;
-    overflow: hidden;
-}
+#hero { min-height: 100vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/background.jpg') no-repeat center center/cover; display: flex; align-items: center; color: var(--light-text-color); padding-top: 80px; padding-bottom: 40px; overflow: hidden; }
 .hero-layout { display: grid; grid-template-columns: 0.9fr 1.1fr; align-items: center; gap: 60px; }
 .hero-text { text-align: left; }
 .hero-text h1 { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.1; }
 .hero-text h1 span:nth-child(1) { font-size: 4.5rem; font-weight: 800; }
-.hero-text h1 span:nth-child(2) { font-size: 4.5rem; font-weight: 600; padding-left: 2rem; } /* Indented */
+.hero-text h1 span:nth-child(2) { font-size: 4.5rem; font-weight: 600; padding-left: 2rem; }
 .hero-text p { font-size: 1.2rem; margin-top: 15px; }
 
-.hero-video-container { position: relative; }
+/* --- FINAL FIX #1: Use a class-based transition controlled by JavaScript --- */
+.hero-video-container {
+    position: relative;
+    opacity: 0; /* Start hidden */
+    transition: opacity 1s ease-out; /* The fade effect will take 1 second */
+}
+.hero-video-container.visible {
+    opacity: 1; /* When this class is added by JS, the container fades in */
+}
+
 .hero-bg-shapes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-.hero-bg-shapes::before, .hero-bg-shapes::after { content: ''; position: absolute; border-radius: var(--border-radius); opacity: 0; animation: fade-in-shapes 1s ease-out 0.5s forwards; }
+.hero-bg-shapes::before, .hero-bg-shapes::after { content: ''; position: absolute; border-radius: var(--border-radius); }
 .hero-bg-shapes::before { width: 100%; height: 100%; background-color: rgba(155, 152, 209, 0.2); transform: translate(40px, 40px); }
 .hero-bg-shapes::after { width: 80%; height: 80%; background-color: rgba(216, 27, 96, 0.15); top: -20px; left: -20px; }
-@keyframes fade-in-shapes { to { opacity: 1; } }
+.hero-video-frame { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--primary-color); border-radius: var(--border-radius); transform: translate(20px, 20px); z-index: 2; }
+.hero-video { position: relative; z-index: 3; }
 
-.hero-video-frame { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--primary-color); border-radius: var(--border-radius); transform: translate(20px, 20px); z-index: 2; opacity: 0; animation: draw-frame 1s ease-out 0.8s forwards; }
-@keyframes draw-frame { to { opacity: 1; } }
-
-.hero-video { position: relative; z-index: 3; opacity: 0; transform: scale(0.95); animation: fade-in-video 1s ease-out 1.2s forwards; }
-@keyframes fade-in-video { to { opacity: 1; transform: scale(1); } }
 .hero-video video { width: 100%; border-radius: var(--border-radius); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-
-/* Sound Button Styles */
 .sound-btn { position: absolute; bottom: 20px; right: 20px; z-index: 10; width: 40px; height: 40px; border-radius: 50%; border: none; background-color: rgba(0,0,0,0.5); color: #fff; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 1rem; backdrop-filter: blur(5px); opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease; }
 .hero-video-container:hover .sound-btn { opacity: 1; visibility: visible; }
 .sound-btn:hover { background-color: rgba(0,0,0,0.8); transform: scale(1.1); }
 .sound-btn.unmuted .fa-volume-mute { display: none; }
 .sound-btn.unmuted .fa-volume-high { display: block; }
-
-/* Slogan & CTA Animations */
 .slogan-animated { display: inline-block; vertical-align: top; border-right: 3px solid rgba(255, 255, 255, .75); white-space: nowrap; overflow: hidden; width: 0; opacity: 0; animation: typing 3.5s steps(48, end) 2.5s forwards, blink-caret .75s step-end infinite 2.5s; }
 .slogan-animated.typing-finished { border-right-color: transparent; animation: typing 3.5s steps(48, end) 2.5s forwards; }
 @keyframes typing { from { width: 0; opacity: 1; } to { width: 100%; opacity: 1; } }
@@ -94,26 +86,18 @@ h1 .fade-in:nth-child(1) { animation-delay: 1.8s; }
 h1 .fade-in:nth-child(2) { animation-delay: 2.0s; } 
 a.cta-button.fade-in { animation-delay: 6.0s; } 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-/* General Button Style */
 .cta-button { display: inline-block; background-color: var(--primary-color); color: var(--light-text-color); padding: 14px 30px; margin-top: 40px; border-radius: 50px; text-decoration: none; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transition: all 0.3s ease; }
 .cta-button:hover { background-color: var(--accent-color); transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0,0,0,0.3); }
 
-/* General Content Section Styles */
+/* ... (All other sections from General Content to Footer are correct and unchanged) ... */
 .content-section { padding: 80px 0; }
 .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: var(--primary-color); position: relative; padding-bottom: 10px; }
 .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background-color: var(--accent-color); transition: width 0.5s ease-in-out; }
 .reveal.visible .section-title::after { width: 120px; }
-
-/* Other sections remain the same... */
-
-/* --- About Us Section --- */
 .about-content { display: flex; align-items: center; gap: 40px; }
 .about-image { width: 40%; border-radius: var(--border-radius); box-shadow: var(--shadow); }
 .about-text { width: 60%; }
 .about-text h3 { font-size: 1.8rem; margin-bottom: 20px; }
-
-/* --- Tour Packages Section --- */
 #tours { background-color: #ffffff; }
 .tour-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 .tour-card { background-color: var(--card-bg); border-radius: var(--border-radius); box-shadow: var(--shadow); overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
@@ -124,8 +108,6 @@ a.cta-button.fade-in { animation-delay: 6.0s; }
 .card-content .price { display: block; font-weight: 600; color: var(--accent-color); margin: 15px 0; }
 .btn-card { display: inline-block; background-color: #f1f1f1; color: var(--text-color); padding: 8px 18px; border-radius: 50px; text-decoration: none; font-weight: 500; transition: background-color 0.3s ease, color 0.3s ease; }
 .btn-card:hover { background-color: var(--primary-color); color: var(--light-text-color); }
-
-/* --- Interactive Gallery Section --- */
 .gallery-container { position: relative; width: 100%; min-height: 450px; display: flex; justify-content: center; align-items: center; }
 .gallery-stack { position: relative; width: 350px; height: 250px; margin: 0 auto; transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
 .gallery-container.expanded .gallery-stack { width: 100%; }
@@ -138,8 +120,6 @@ a.cta-button.fade-in { animation-delay: 6.0s; }
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
 .gallery-container.expanded .gallery-item:hover { transform: scale(1.05) !important; z-index: 10; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
 #expand-gallery-btn { position: absolute; z-index: 10; bottom: 0; left: 50%; transform: translateX(-50%); }
-
-/* --- Modern Modal Styles --- */
 .modal { position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.85); display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
 .modal.visible { opacity: 1; visibility: visible; }
 .modal-content { position: relative; background: var(--card-bg); padding: 25px; border-radius: var(--border-radius); max-width: 800px; width: 90%; text-align: center; transform: scale(0.9); transition: transform 0.3s ease; }
@@ -148,8 +128,6 @@ a.cta-button.fade-in { animation-delay: 6.0s; }
 #modal-description { font-size: 1.1rem; color: var(--text-color); line-height: 1.6; }
 .close-modal { position: absolute; top: -15px; right: -15px; color: #fff; background-color: var(--primary-color); font-size: 24px; font-weight: bold; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; transition: background-color 0.3s ease, transform 0.3s ease; }
 .close-modal:hover { background-color: var(--accent-color); transform: rotate(90deg); }
-
-/* --- Testimonials Section --- */
 #testimonials { background-color: #ffffff; }
 .testimonial-slider { position: relative; max-width: 800px; margin: 0 auto; overflow: hidden; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: var(--light-text-color); padding: 40px 60px; border-radius: var(--border-radius); box-shadow: var(--shadow); min-height: 200px; }
 .testimonial-slides { position: relative; width: 100%; height: 100%; }
@@ -162,8 +140,6 @@ a.cta-button.fade-in { animation-delay: 6.0s; }
 .slider-btn:hover { background-color: rgba(255,255,255,0.4); }
 .slider-btn.prev { left: 10px; }
 .slider-btn.next { right: 10px; }
-
-/* --- Contact Section --- */
 .contact-wrapper { display: flex; gap: 40px; background: var(--card-bg); padding: 40px; border-radius: var(--border-radius); box-shadow: var(--shadow); }
 .contact-info, .contact-map { width: 50%; }
 .contact-info h3 { color: var(--primary-color); font-size: 1.8rem; margin-bottom: 10px; }
@@ -172,8 +148,6 @@ a.cta-button.fade-in { animation-delay: 6.0s; }
 .contact-info li { display: flex; align-items: center; margin-bottom: 15px; font-size: 1.1rem; }
 .contact-info li i { color: var(--accent-color); font-size: 1.5rem; margin-right: 15px; width: 25px; text-align: center; }
 .contact-map iframe { border-radius: var(--border-radius); }
-
-/* --- Modern Footer --- */
 .site-footer { background-color: #343a40; color: #adb5bd; padding: 60px 0 0; font-size: 0.95rem; }
 .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
 .footer-logo { height: 50px; margin-bottom: 20px; background-color: #fff; padding: 5px; border-radius: var(--border-radius); }
@@ -188,24 +162,13 @@ a.cta-button.fade-in { animation-delay: 6.0s; }
 .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 40px; height: 40px; border-radius: 50%; background-color: #495057; color: var(--light-text-color); text-decoration: none; font-size: 1.1rem; margin-right: 10px; transition: background-color 0.3s ease, transform 0.3s ease; }
 .social-icons a:hover { background-color: var(--accent-color); transform: scale(1.1) rotate(10deg); }
 .footer-bottom { border-top: 1px solid #495057; padding: 20px 0; text-align: center; font-size: 0.9rem; }
-
-/* --- Reveal on Scroll Animation --- */
 .reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-
-/* --- ================================== --- */
 /* --- Responsive Design --- */
-/* --- ================================== --- */
-
-/* --- Tablet and Smaller Laptops (max-width: 992px) --- */
 @media (max-width: 992px) {
     .hero-layout { grid-template-columns: 1fr; gap: 40px; }
-    .hero-text { 
-        order: 2;
-        /* --- FIX #2: Center the text block for tablets and mobile --- */
-        text-align: center;
-    }
+    .hero-text { order: 2; text-align: center; display: flex; flex-direction: column; align-items: center; }
     .hero-text h1 { align-items: center; }
     .hero-video-container { order: 1; max-width: 500px; width: 100%; margin: 0 auto; }
     .gallery-container.expanded .gallery-stack { grid-template-columns: repeat(3, 1fr); }
@@ -213,77 +176,46 @@ a.cta-button.fade-in { animation-delay: 6.0s; }
     .about-content { gap: 30px; }
 }
 
-/* --- Mobile Devices (max-width: 768px) --- */
 @media (max-width: 768px) {
-    /* --- Hamburger Menu Logic --- */
     .menu-toggle { display: block; }
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 100%;
-        height: 100vh;
-        background-color: rgba(40, 15, 66, 0.95);
-        backdrop-filter: blur(10px);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-        z-index: 1050;
-    }
+    .nav-links { position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background-color: rgba(40, 15, 66, 0.95); backdrop-filter: blur(10px); flex-direction: column; justify-content: center; align-items: center; transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1); z-index: 1050; }
     .nav-links.active { right: 0; }
     .nav-links li { margin: 20px 0; }
     .nav-links a { color: #fff; font-size: 1.5rem; }
     header.scrolled .nav-links a { color: #fff; }
-    .menu-toggle.active .fa-bars { display: none; }
-    .menu-toggle .fa-times { display: none; }
-    .menu-toggle.active .fa-times { display: block; }
-
-    /* --- General Adjustments --- */
     .content-section { padding: 60px 0; }
+    #hero { padding-top: 100px; min-height: auto; padding-bottom: 60px; }
 
-    /* --- Hero Section --- */
-    #hero {
-        padding-top: 100px;
-        min-height: auto;
-        padding-bottom: 60px;
+    /* --- FINAL FIX #2: Reset transforms to none, centering the frames perfectly --- */
+    .hero-bg-shapes::before,
+    .hero-video-frame {
+        transform: none; /* This is the key fix. It removes all offsets. */
+    }
+    .hero-bg-shapes::after {
+        transform: none;
+        top: 0; /* Reset positioning for perfect centering */
+        left: 0;
     }
     
-    /* --- FIX #1: Reduce the video frame offset to prevent overflow --- */
-    .hero-bg-shapes::before { transform: translate(15px, 15px); }
-    .hero-video-frame { transform: translate(10px, 10px); }
-    .hero-bg-shapes::after { top: -10px; left: -10px; }
-    
-    .hero-text h1 span:nth-child(1), 
-    .hero-text h1 span:nth-child(2) { font-size: 3rem; }
+    .hero-text h1 span:nth-child(1), .hero-text h1 span:nth-child(2) { font-size: 3rem; }
     .hero-text h1 span:nth-child(2) { padding-left: 0; }
     .slogan-animated { font-size: 1rem; }
     .cta-button { padding: 12px 25px; margin-top: 30px; }
-
-    /* --- About & Contact Layouts --- */
     .about-content, .contact-wrapper { flex-direction: column; }
     .about-image, .about-text, .contact-info, .contact-map { width: 100%; }
     .contact-map { height: 300px; }
-
-    /* --- Gallery --- */
     .gallery-stack { width: 300px; height: 225px; }
     .gallery-item { width: 300px; height: 225px; }
-
-    /* --- Testimonials --- */
     .testimonial-slider { padding: 30px 20px; }
     .slider-btn { display: none; }
-
-    /* --- Footer --- */
     .footer-grid { text-align: center; }
     .footer-grid > div { margin-bottom: 20px; }
     .site-footer h3::after { left: 50%; transform: translateX(-50%); }
     .social-icons { justify-content: center; }
 }
 
-/* --- Small Mobile Devices (max-width: 480px) --- */
 @media (max-width: 480px) {
-    .hero-text h1 span:nth-child(1), 
-    .hero-text h1 span:n-child(2) { font-size: 2.5rem; }
+    .hero-text h1 span:nth-child(1), .hero-text h1 span:nth-child(2) { font-size: 2.5rem; }
     .section-title { font-size: 1.8rem; }
     .tour-cards { grid-template-columns: 1fr; }
     .contact-wrapper { padding: 25px; }
