@@ -17,6 +17,43 @@ window.addEventListener('load', () => {
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    // --- NEW: Hamburger Menu Logic ---
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = navMenu.querySelectorAll('a');
+
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            // Toggle the 'active' class on the menu to show/hide it
+            navMenu.classList.toggle('active');
+
+            // Toggle icon (optional, if you want to switch to an 'X' icon)
+            const icon = menuToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = ''; // Allow scrolling again
+            }
+        });
+
+        // Close menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    }
+
     // --- Stop Blinking Caret on Slogan After Animation ---
     const slogan = document.querySelector('.slogan-animated');
     if (slogan) {
