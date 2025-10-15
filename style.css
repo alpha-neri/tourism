@@ -145,18 +145,14 @@ h1 .h1-line:nth-child(2) .animated-text { animation-delay: 2.0s; }
 }
 .modal.visible .modal-content { transform: scale(1); }
 
-
-/* ----- REPLACE THIS RULE ----- */
 #modal-image {
     max-width: 100%;
-    max-height: 55vh; /* CHANGED: Reduced slightly to account for margin */
+    max-height: 55vh; 
     object-fit: contain;
-    border-radius: var(--border-radius); /* CHANGED: Rounded all corners */
+    border-radius: var(--border-radius); 
     flex-shrink: 0;
-    margin: 15px 25px 0 25px; /* NEW: This adds the space you want! */
+    margin: 15px 25px 0 25px;
 }
-/* ----- END OF REPLACEMENT ----- */
-
 
 #modal-description {
     padding: 20px 25px;
@@ -164,13 +160,13 @@ h1 .h1-line:nth-child(2) .animated-text { animation-delay: 2.0s; }
     color: var(--text-color); 
     line-height: 1.7;
     text-align: left;
-    overflow-y: auto; /* CRITICAL: Add scrollbar ONLY to the text if it overflows */
-    flex-grow: 1; /* Allow description to take remaining space */
+    overflow-y: auto; 
+    flex-grow: 1; 
 }
 
 .close-modal { 
     position: absolute; 
-    top: 10px; /* Position inside the top right corner */
+    top: 10px; 
     right: 10px;
     color: #fff; 
     background-color: var(--primary-color); 
@@ -605,6 +601,27 @@ header.scrolled .logo img {
     .header-overlay h1 { font-size: 3rem; }
     .accom-details .detail-block, .accom-details .detail-block.reverse { flex-direction: column; }
     .location-wrapper { flex-direction: column; }
+
+    /* ===== START: ADD THIS CODE ===== */
+    /* NEW: History Timeline Responsive Adjustments */
+    .history-timeline::before {
+        display: none; /* Hide the central line on mobile */
+    }
+    .timeline-event {
+        grid-template-columns: 1fr; /* Stack to a single column */
+        gap: 30px;
+    }
+    .timeline-event:nth-child(even) .timeline-content,
+    .timeline-event:nth-child(even) .timeline-image-container {
+        order: initial; /* Reset the order for a consistent stacked layout */
+    }
+    .timeline-event.reveal .timeline-content,
+    .timeline-event:nth-child(even).reveal .timeline-content,
+    .timeline-event.reveal .timeline-image-container,
+    .timeline-event:nth-child(even).reveal .timeline-image-container {
+        transform: translateY(30px); /* Change side animation to a slide-up */
+    }
+    /* ===== END: ADD THIS CODE ===== */
 }
 
 @media (max-width: 480px) {
