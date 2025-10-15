@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluewave Hotel | Travel Badi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- "Page Flip" Preloader with Logo -->
+    <div id="preloader">
+        <div class="preloader-icon">
+            <img src="images/logo.png" alt="Travel Badi Logo">
+        </div>
+        <div class="preloader-panel top-left-panel"></div>
+        <div class="preloader-panel bottom-right-panel"></div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="container">
+            <!-- IMPORTANT: Links now point back to the main page (index.html) -->
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Travel Badi Logo">
+            </a>
+            <ul class="nav-links nav-menu">
+                <li><a href="index.html#hero">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#tours">Tours</a></li>
+                <li><a href="index.html#gallery">Gallery</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Dynamic Photo Grid Header -->
+        <section class="accom-header">
+            <div class="photo-grid">
+                <!-- Replace with your hotel images -->
+                <div class="grid-item large"><img src="images/picture14.jpg" alt="Bluewave Hotel Exterior"></div>
+                <div class="grid-item"><img src="images/picture14.jpg" alt="Rooftop Pool"></div>
+                <div class="grid-item"><img src="images/picture12.jpg" alt="Hotel Room View"></div>
+                <div class="grid-item"><img src="images/picture13.jpg" alt="Hotel Lobby"></div>
+                <div class="grid-item"><img src="images/picture15.jpg" alt="Hotel Restaurant"></div>
+            </div>
+            <div class="header-overlay">
+                <h1>Bluewave Hotel</h1>
+                <p>Your Comfort in the Heart of Cebu City</p>
+            </div>
+        </section>
+
+        <!-- About Property Section -->
+        <section class="accom-intro content-section">
+            <div class="container reveal">
+                <h2 class="section-title">About This Property</h2>
+                <p class="intro-text">
+                    The Bluewave Hotel in Cebu City offers a premier experience for families and travelers alike. With stunning city views, modern amenities, and a prime location, it stands as the perfect base for your adventures in the Queen City of the South.
+                </p>
+            </div>
+        </section>
+        
+        <!-- Key Features Section -->
+        <section class="accom-features content-section">
+            <div class="container reveal">
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-swimming-pool"></i>
+                        <h3>Rooftop Pool</h3>
+                        <p>Relax and unwind with breathtaking city views from our stunning rooftop swimming pool.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-dumbbell"></i>
+                        <h3>Fitness Room</h3>
+                        <p>Stay active during your travels in our modern, fully-equipped fitness center.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-utensils"></i>
+                        <h3>Asian Cuisine</h3>
+                        <p>Indulge in a delightful culinary journey at our family-friendly restaurant.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-wifi"></i>
+                        <h3>Free WiFi</h3>
+                        <p>Stay connected with complimentary high-speed internet access throughout the property.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Info Sections (Alternating Layout) -->
+        <section class="accom-details content-section">
+            <div class="container">
+                <!-- Block 1: Accommodations -->
+                <div class="detail-block reveal">
+                    <div class="detail-image">
+                        <img src="images/picture12.jpg" alt="Comfortable and modern hotel room">
+                    </div>
+                    <div class="detail-text">
+                        <h3>Comfortable Accommodations</h3>
+                        <p>Our family rooms are designed for your ultimate comfort, featuring air conditioning, private bathrooms, and captivating city views. Each room is equipped with a work desk, complimentary toiletries, and a TV for your convenience.</p>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Air Conditioning</li>
+                            <li><i class="fas fa-check"></i> Private Bathrooms</li>
+                            <li><i class="fas fa-check"></i> Work Desk & TV</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Block 2: Dining (Reversed) -->
+                <div class="detail-block reverse reveal">
+                    <div class="detail-image">
+                        <img src="images/picture15.jpg" alt="Breakfast buffet at the hotel">
+                    </div>
+                    <div class="detail-text">
+                        <h3>Exceptional Dining</h3>
+                        <p>Our family-friendly restaurant serves exquisite Asian cuisine for both lunch and dinner. Start your day right with a delicious buffet breakfast, featuring a wide selection of popular Asian options to satisfy every palate.</p>
+                         <ul>
+                            <li><i class="fas fa-check"></i> Asian Cuisine Lunch & Dinner</li>
+                            <li><i class="fas fa-check"></i> Daily Buffet Breakfast</li>
+                            <li><i class="fas fa-check"></i> On-site Bar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location Section -->
+        <section id="location" class="accom-location content-section">
+            <div class="container reveal">
+                 <h2 class="section-title">Prime Location</h2>
+                <div class="location-wrapper">
+                    <div class="location-info">
+                        <h3>Explore Cebu with Ease</h3>
+                        <p>Situated just 12 km from Mactan-Cebu International Airport, the hotel offers unparalleled access to the city's key attractions.</p>
+                        <ul>
+                           <li><i class="fas fa-walking"></i> 8-minute walk to Fuente Osmena Circle</li>
+                           <li><i class="fas fa-shopping-bag"></i> 2 km from Ayala Centre Cebu</li>
+                           <li><i class="fas fa-landmark"></i> Close to historic Colon Street & Magellan's Cross</li>
+                           <li><i class="fas fa-plane-departure"></i> Paid airport shuttle service available</li>
+                        </ul>
+                    </div>
+                    <div class="location-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.334135515321!2d123.89297591535456!3d10.297439192636477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99955734524c5%3A0x628043685369c676!2sLeon%20Kilat%20St%2C%20Cebu%20City%2C%20Cebu!5e0!3m2!1sen!2sph!4v1672852500000!5m2!1sen!2sph" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="accom-cta">
+            <div class="container">
+                <h2>Ready for an Unforgettable Stay?</h2>
+                <p>Let Travel Badi handle your booking. Contact us now to secure your room at the Bluewave Hotel!</p>
+                <a href="index.html#contact" class="cta-button">Book Your Stay</a>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Modern Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Footer content remains the same -->
+                <div class="footer-about"><img src="images/logo.png" alt="Travel Badi Logo" class="footer-logo"><p>Your adventure buddy for unforgettable journeys. We create personalized travel experiences that feel like exploring the world with a friend.</p></div>
+                <div class="footer-links"><h3>Quick Links</h3><ul><li><a href="index.html#hero">Home</a></li><li><a href="index.html#about">About Us</a></li><li><a href="index.html#tours">Tour Packages</a></li><li><a href="index.html#gallery">Gallery</a></li><li><a href="index.html#contact">Contact</a></li></ul></div>
+                <div class="footer-contact"><h3>Contact Us</h3><ul><li><i class="fas fa-map-marker-alt"></i> Leon Kilat St., Cebu City</li><li><i class="fas fa-phone"></i> +63 912 345 6789</li><li><i class="fas fa-envelope"></i> travelbadiagency@gmail.com</li></ul></div>
+                <div class="footer-social"><h3>Follow Us</h3><div class="social-icons"><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a><a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a></div></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2024 Travel Badi Agency. All Rights Reserved. Designed with ❤️.</p></div>
+        </div>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
