@@ -602,8 +602,7 @@ header.scrolled .logo img {
     .accom-details .detail-block, .accom-details .detail-block.reverse { flex-direction: column; }
     .location-wrapper { flex-direction: column; }
 
-    /* ===== START: ADD THIS CODE ===== */
-    /* NEW: History Timeline Responsive Adjustments */
+    /* History Timeline Responsive Adjustments */
     .history-timeline::before {
         display: none; /* Hide the central line on mobile */
     }
@@ -620,6 +619,20 @@ header.scrolled .logo img {
     .timeline-event.reveal .timeline-image-container,
     .timeline-event:nth-child(even).reveal .timeline-image-container {
         transform: translateY(30px); /* Change side animation to a slide-up */
+    }
+
+    /* ===== START: ADD THIS CODE ===== */
+    /* NEW: History Conclusion Section Responsive */
+    .history-conclusion .container {
+        flex-direction: column; /* Stack image and text vertically */
+        text-align: center;
+    }
+    .conclusion-image {
+        max-width: 250px; /* Make the image smaller and more balanced on mobile */
+        margin: 0 auto 30px auto; /* Center the image and add space below */
+    }
+    .conclusion-text h2 {
+        font-size: 2rem; /* Adjust heading size for mobile */
     }
     /* ===== END: ADD THIS CODE ===== */
 }
