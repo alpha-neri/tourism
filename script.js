@@ -56,15 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Stop Blinking Caret on Slogan After Animation ---
-    const slogan = document.querySelector('.slogan-animated');
-    if (slogan) {
-        const totalDelay = 2500 + 3500;
-        setTimeout(() => {
-            slogan.classList.add('typing-finished');
-        }, totalDelay);
-    }
-
     // --- Sticky Navigation Bar on Scroll ---
     const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
@@ -94,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Smooth Interactive Gallery Logic (Restored to Original) ---
+    // --- MODIFIED: Smooth Interactive Gallery Logic ---
     const galleryContainer = document.getElementById('gallery-container');
     const expandBtn = document.getElementById('expand-gallery-btn');
     const galleryStack = document.querySelector('.gallery-stack');
@@ -108,13 +99,16 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => { expandBtn.style.display = 'none'; }, 300);
 
             const containerWidth = galleryContainer.offsetWidth;
-            let cols = 4;
+            
+            // Set grid to 6 columns on desktop, and adjust for smaller screens
+            let cols = 6;
+            if (window.innerWidth <= 1200) cols = 4;
             if (window.innerWidth <= 992) cols = 3;
             if (window.innerWidth <= 768) cols = 2;
             
             const gap = 20;
             const itemWidth = (containerWidth - (cols - 1) * gap) / cols;
-            const itemHeight = itemWidth * (3 / 4);
+            const itemHeight = itemWidth * (3 / 4); // Maintain 4:3 aspect ratio
 
             galleryItems.forEach((item, index) => {
                 const row = Math.floor(index / cols);
