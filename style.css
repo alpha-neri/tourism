@@ -137,11 +137,9 @@ h1 .h1-line:nth-child(2) .animated-text { animation-delay: 2.0s; }
     width: 90%; 
     transform: scale(0.9); 
     transition: transform 0.3s ease; 
-    
-    /* Flexbox layout for vertical arrangement */
     display: flex;
     flex-direction: column;
-    max-height: 90vh; /* Set a max height for the entire modal */
+    max-height: 90vh; 
 }
 .modal.visible .modal-content { transform: scale(1); }
 
@@ -210,9 +208,18 @@ h1 .h1-line:nth-child(2) .animated-text { animation-delay: 2.0s; }
 .contact-map iframe { border-radius: var(--border-radius); }
 
 /* ========== START: PACKAGE TOUR DETAILS PAGE STYLES ========== */
-/* This is the old design you didn't want repeated. It's kept here for the tour-details page. */
 .tour-details-header { position: relative; height: 60vh; min-height: 400px; color: var(--light-text-color); padding-top: 80px; background-color: #333; overflow: hidden; }
-.collage-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); z-index: 1; gap: 2px; }
+.collage-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    z-index: 1;
+    gap: 2px;
+}
 .collage-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
 .collage-img:hover { transform: scale(1.05); }
 .tour-header-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.2)); z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
@@ -235,7 +242,7 @@ h1 .h1-line:nth-child(2) .animated-text { animation-delay: 2.0s; }
 .reserve-now-btn { display: inline-block; background-color: var(--accent-color); color: var(--light-text-color); padding: 16px 35px; margin-top: 20px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; border: 2px solid transparent; }
 .reserve-now-btn:hover { background-color: #fff; color: var(--accent-color); border-color: var(--accent-color); transform: translateY(-5px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
 
-/* ========== START: **NEW** ACCOMMODATION PAGE STYLES ========== */
+/* ========== START: ACCOMMODATION PAGE STYLES ========== */
 .accom-header { position: relative; height: 70vh; min-height: 500px; padding-top: 80px; overflow: hidden; background-color: #333; }
 .photo-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr); gap: 8px; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 .grid-item { overflow: hidden; }
@@ -275,11 +282,9 @@ h1 .h1-line:nth-child(2) .animated-text { animation-delay: 2.0s; }
 .accom-cta { padding: 80px 0; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); text-align: center; color: var(--light-text-color); }
 .accom-cta h2 { font-size: 2.5rem; margin-bottom: 10px; }
 
-/* ========== END: NEW ACCOMMODATION PAGE STYLES ========== */
+/* ========== END: ACCOMMODATION PAGE STYLES ========== */
 
 /* ========== START: TALISAY HISTORY PAGE STYLES ========== */
-
-/* FOR VISIBILITY: Make header background visible on page load for inner pages */
 header.scrolled {
     background-color: rgba(255, 255, 255, 0.98);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -303,74 +308,14 @@ header.scrolled .logo img {
     height: 50px;
 }
 
-/* NEW Photo Grid Header Styles */
 .history-grid-header {
     position: relative;
     height: 70vh;
     min-height: 500px;
     padding-top: 80px; 
     overflow: hidden;
-    background-color: #333; /* Fallback color */
+    background-color: #333; 
 }
-/* The photo-grid styles from accommodation page are used here */
-/* (Assuming they are already in your style.css, if not, add them) */
-.photo-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 8px; /* Gap between images */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-.grid-item {
-    overflow: hidden;
-}
-.grid-item.large {
-    grid-column: span 2;
-    grid-row: span 2;
-}
-.grid-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease, filter 0.4s ease;
-}
-/* Interactive hover effect */
-.photo-grid:hover img {
-    filter: brightness(0.7) saturate(0.8);
-}
-.grid-item:hover img {
-    transform: scale(1.05);
-    filter: brightness(1) saturate(1);
-}
-.header-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.7) 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: var(--light-text-color);
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
-    pointer-events: none; /* Allows hover effects to pass through to the images */
-}
-.header-overlay h1 {
-    font-size: 4rem;
-    font-weight: 800;
-}
-.header-overlay p {
-    font-size: 1.5rem;
-}
-
-/* The rest of the history page styles remain the same */
 .history-timeline {
     padding: 80px 0;
     background-color: #ffffff;
@@ -585,16 +530,18 @@ header.scrolled .logo img {
     .site-footer h3::after { left: 50%; transform: translateX(-50%); }
     .social-icons { justify-content: center; }
     
-    /* Tour Details Page Responsive */
-    .collage-background { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 1fr); }
-    .tour-details-header { height: 50vh; min-height: 300px; }
-    .tour-details-header h1 { font-size: 2.5rem; }
-    .tour-details-header p { font-size: 1.2rem; }
-    .details-wrapper { padding: 25px; margin-top: -80px; }
     .tour-details-grid { grid-template-columns: 1fr; gap: 40px; }
-    .reserve-now-container h2 { font-size: 1.8rem; }
-    
-    /* NEW Accommodation Page Responsive */
+
+    /* === NEW: Responsive font sizes for tour details header === */
+    .tour-details-header h1 {
+        font-size: 3rem;
+        line-height: 1.2;
+    }
+    .tour-details-header p {
+        font-size: 1.3rem;
+    }
+    /* ========================================================= */
+
     .accom-header { height: 60vh; min-height: 400px; }
     .photo-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 1fr); }
     .grid-item.large { grid-column: span 2; grid-row: span 2; }
@@ -602,39 +549,17 @@ header.scrolled .logo img {
     .accom-details .detail-block, .accom-details .detail-block.reverse { flex-direction: column; }
     .location-wrapper { flex-direction: column; }
 
-    /* History Timeline Responsive Adjustments */
-    .history-timeline::before {
-        display: none; /* Hide the central line on mobile */
-    }
-    .timeline-event {
-        grid-template-columns: 1fr; /* Stack to a single column */
-        gap: 30px;
-    }
+    .history-timeline::before { display: none; }
+    .timeline-event { grid-template-columns: 1fr; gap: 30px; }
     .timeline-event:nth-child(even) .timeline-content,
-    .timeline-event:nth-child(even) .timeline-image-container {
-        order: initial; /* Reset the order for a consistent stacked layout */
-    }
+    .timeline-event:nth-child(even) .timeline-image-container { order: initial; }
     .timeline-event.reveal .timeline-content,
     .timeline-event:nth-child(even).reveal .timeline-content,
     .timeline-event.reveal .timeline-image-container,
-    .timeline-event:nth-child(even).reveal .timeline-image-container {
-        transform: translateY(30px); /* Change side animation to a slide-up */
-    }
-
-    /* ===== START: ADD THIS CODE ===== */
-    /* NEW: History Conclusion Section Responsive */
-    .history-conclusion .container {
-        flex-direction: column; /* Stack image and text vertically */
-        text-align: center;
-    }
-    .conclusion-image {
-        max-width: 250px; /* Make the image smaller and more balanced on mobile */
-        margin: 0 auto 30px auto; /* Center the image and add space below */
-    }
-    .conclusion-text h2 {
-        font-size: 2rem; /* Adjust heading size for mobile */
-    }
-    /* ===== END: ADD THIS CODE ===== */
+    .timeline-event:nth-child(even).reveal .timeline-image-container { transform: translateY(30px); }
+    .history-conclusion .container { flex-direction: column; text-align: center; }
+    .conclusion-image { max-width: 250px; margin: 0 auto 30px auto; }
+    .conclusion-text h2 { font-size: 2rem; }
 }
 
 @media (max-width: 480px) {
@@ -642,13 +567,17 @@ header.scrolled .logo img {
     .section-title { font-size: 1.8rem; }
     .tour-cards { grid-template-columns: 1fr; }
     .contact-wrapper { padding: 25px; }
-
-    /* Tour Details Page Responsive */
-    .tour-details-header h1 { font-size: 2rem; }
-    .tour-details-header p { font-size: 1rem; }
-    .details-wrapper { margin-top: -60px; }
+    .details-wrapper { margin-top: -100px; }
     
-    /* NEW Accommodation Page Responsive */
+    /* === NEW: Further font size reduction for small phones === */
+    .tour-details-header h1 {
+        font-size: 2.5rem;
+    }
+    .tour-details-header p {
+        font-size: 1.1rem;
+    }
+    /* ======================================================== */
+
     .accom-header { height: 50vh; }
     .header-overlay h1 { font-size: 2.2rem; }
     .header-overlay p { font-size: 1.2rem; }
